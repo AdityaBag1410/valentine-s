@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Valentine Surprise 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+/* BACKGROUND */
+body{
+    overflow:hidden;
+    background:radial-gradient(circle at top,#ff5f9e,#1a001a);
+    color:white;
+}
+
+/* FLOATING HEARTS & FLOWERS */
+.bg-anim span{
+    position:absolute;
+    font-size:24px;
+    animation:float 10s linear infinite;
+    opacity:0.8;
+}
+@keyframes float{
+    from{transform:translateY(110vh) rotate(0deg);}
+    to{transform:translateY(-10vh) rotate(360deg);}
+}
+
+/* PAGES */
+.page{
+    width:100vw;
+    height:100vh;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    text-align:center;
+    position:relative;
+    z-index:2;
+}
+.show{display:flex;}
+
+button{
+    padding:15px 35px;
+    border:none;
+    border-radius:40px;
+    font-size:18px;
+    cursor:pointer;
+    box-shadow:0 0 20px hotpink;
+}
+
+/* PAGE 1 */
+.box{
+    width:340px;
+    background:rgba(255,255,255,0.15);
+    padding:30px;
+    border-radius:25px;
+    box-shadow:0 0 30px hotpink;
+    backdrop-filter:blur(10px);
+}
+.img-box{
+    width:100%;
+    height:160px;
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    margin:15px 0;
+}
+.img-box img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+.yes{background:#ff2f92;color:white;}
+.no{
+    background:#777;
+    color:white;
+    position:relative;
+}
+
+/* PAGE 2 */
+.envelope{
+    width:320px;
+    height:220px;
+    background:linear-gradient(135deg,#ff8fab,#ff4d6d);
+    border-radius:15px;
+    position:relative;
+    cursor:pointer;
+    box-shadow:0 0 40px hotpink;
+}
+.envelope::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(45deg,transparent 50%,rgba(255,255,255,0.4) 50%);
+    border-radius:15px;
+}
+.envelope-text{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:26px;
+    font-weight:bold;
+    text-shadow:0 0 15px white;
+}
+
+/* PAPER */
+.paper{
+    display:none;
+    margin-top:25px;
+    background:#fff2cc;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 0 30px gold;
+    color:#333;
+}
+.wishes{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+.wish{
+    background:#ff69b4;
+    padding:15px;
+    border-radius:15px;
+    color:white;
+    box-shadow:0 0 20px hotpink;
+}
+.red-btn{
+    margin-top:20px;
+    background:red;
+    color:white;
+}
+
+/* BLAST */
+.blast{
+    position:fixed;
+    inset:0;
+    background:white;
+    animation:boom 1s forwards;
+    z-index:999;
+}
+@keyframes boom{
+    0%{opacity:0;}
+    50%{opacity:1;}
+    100%{opacity:0;}
+}
+
+/* ========================= */
+/* PAGE 3 - FIXED & UPDATED */
+/* ========================= */
+
+.photos3{
+    display:flex;
+    gap:20px;
+    justify-content:center;
+}
+
+/* 🔥 CHANGE IMAGE SIZE HERE */
+.photo{
+    width:140px;   /* CHANGE THIS */
+    height:140px;  /* CHANGE THIS */
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 0 20px hotpink;
+    transition:0.3s;
+}
+
+.photo:hover{
+    transform:scale(1.1);
+}
+
+.photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* PAGE 4 */
+.grid7{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    max-width:90%;
+}
+
+.card{
+    background:rgba(255,255,255,0.9);
+    border-radius:15px;
+    padding:10px;
+    box-shadow:0 0 20px hotpink;
+    color:#333;
+}
+
+.card img{
+    width:100%;
+    height:120px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+.card p{
+    margin-top:8px;
+    font-size:14px;
+    font-weight:600;
+    text-align:center;
+}
+
+/* ===================== */
+/* PAGE 5 FINAL UPDATED */
+/* ===================== */
+
+#p5{
+    background:linear-gradient(135deg,#ff4da6,#ff99cc,#ff66b2);
+    animation:gradientMove 6s infinite alternate;
+}
+
+@keyframes gradientMove{
+    0%{background-position:left;}
+    100%{background-position:right;}
+}
+
+.final-container{
+    text-align:center;
+    animation:fadeIn 2s ease-in-out;
+}
+
+#valText{
+    font-size:45px;
+    color:white;
+    text-shadow:0 0 20px white, 0 0 40px hotpink;
+    margin-bottom:20px;
+}
+
+.sub-text{
+    font-size:20px;
+    color:white;
+    text-shadow:0 0 10px pink;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:scale(0.8);}
+    to{opacity:1; transform:scale(1);}
+}
+/* ============================= */
+/* PAGE 5 - 7 CUSTOM BOX PAGE   */
+/* ============================= */
+
+#p5{
+    background:linear-gradient(135deg,#ff6ec4,#7873f5,#ff9a9e,#fad0c4);
+    background-size:400% 400%;
+    animation:colorMove 8s infinite alternate;
+    overflow-y:auto;
+    padding:40px 20px;
+}
+
+@keyframes colorMove{
+    0%{background-position:0% 50%;}
+    100%{background-position:100% 50%;}
+}
+
+.party-top{
+    font-size:40px;
+    margin-bottom:20px;
+    animation:popper 1s infinite;
+}
+
+@keyframes popper{
+    50%{transform:scale(1.3);}
+}
+
+.grid7-custom{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:20px;
+    width:%;
+    max-width:10000000px;
+}
+
+.custom-card{
+    background:white;
+    border-radius:20px;
+    padding:10px;
+    box-shadow:0 0 25px hotpink;
+    text-align:center;
+    transition:0.3s;
+}
+
+.custom-card:hover{
+    transform:scale(1.08);
+}
+
+.custom-card img{
+    width:100%;
+    height:150px;
+    object-fit:cover;
+    border-radius:15px;
+}
+
+.custom-card p{
+    margin-top:8px;
+    font-weight:bold;
+    color:#ff1493;
+}
+
+.next-final-btn{
+    margin-top:30px;
+    padding:15px 40px;
+    border:none;
+    border-radius:40px;
+    font-size:18px;
+    cursor:pointer;
+    background:#ff1493;
+    color:white;
+    box-shadow:0 0 20px white;
+}
+
+</style>
+</head>
+
+<body>
+    <!-- BACKGROUND MUSIC -->
+<audio id="bgMusic" loop>
+    <source src="paulyudin-romantic-adventure-182516 music.mp3" type="audio/mpeg">
+</audio>
+
+
+<div class="bg-anim">
+    <span style="left:5%;animation-delay:0s">💖</span>
+    <span style="left:15%;animation-delay:2s">🌸</span>
+    <span style="left:30%;animation-delay:4s">💞</span>
+    <span style="left:45%;animation-delay:1s">🌹</span>
+    <span style="left:60%;animation-delay:3s">💗</span>
+    <span style="left:75%;animation-delay:5s">🌺</span>
+    <span style="left:90%;animation-delay:6s">💕</span>
+</div>
+
+<!-- PAGE 1 -->
+<div class="page show" id="p1">
+    <div class="box">
+        <h2>Hii 💕</h2>
+        <div class="img-box">
+            <img src="Screenshot 2026-02-10 233845.png">
+        </div>
+        <button class="yes" onclick="startMusic()">YES</button><br><br>
+        <button class="no" id="no">NO</button>
+    </div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="p2">
+    <div class="envelope" onclick="openEnv()">
+        <div class="envelope-text">Open 💌</div>
+    </div>
+    <div class="paper" id="paper">
+        <div class="wishes">
+            <div class="wish">You are my happiness 💖</div>
+            <div class="wish">Do you have a map? I just got lost in the idea of us actually going out tonight. 💕</div>
+            <div class="wish">I realized today that my favorite place to be isn't a location—it’s just wherever you happen to be standing. 💗</div>
+            <div class="wish">They say Valentine’s Day is for the most beautiful person in your life. So, I figured I should probably start by talking to you. 💞</div>
+        </div>
+        <button class="red-btn" onclick="blast()">slap me</button>
+    </div>
+</div>
+
+<!-- PAGE 3 FIXED -->
+<div class="page" id="p3">
+    <div class="photos3">
+
+        <div class="photo">
+            <img src="Screenshot 2026-02-11 004915.png">
+        </div>
+
+        <div class="photo">
+            <img src="Screenshot 2026-02-11 004915.png">
+        </div>
+
+        <div class="photo">
+            <img src="Screenshot 2026-02-11 004915.png">
+        </div>
+
+    </div>
+    <br>
+    <button onclick="go(4)">ENTER</button>
+</div>
+<!-- PAGE 4 -->
+<div class="page" id="p4">
+    <div class="grid7">
+
+        <div class="card">
+            <img src="Screenshot 2026-02-11 004915.png">
+            <p>My Cutie💕</p>
+        </div>
+
+        <div class="card">
+            <img src="Screenshot 2026-02-11 004915.png">
+            <p>My Happiness 💖</p>
+        </div>
+
+        <div class="card">
+            <img src="Screenshot 2026-02-11 004915.png">
+            <p>Forever Together 💞</p>
+        </div>
+
+    </div>
+    <br>
+    <button onclick="go(5)">Surprize !! 💗</button>
+</div>
+<!-- PAGE 5 - 7 CUSTOMIZABLE BOXES -->
+<div class="page" id="p5">
+
+    <div class="party-top">🎉 🎊 🎈 🎉 🎊</div>
+
+    <div class="grid7-custom">
+
+        <!-- BOX 1 -->
+        <div class="happy chocolate day ">
+            <img src="Screenshot 2026-02-11 000455.png">
+            <p>happy chocolate day </p>
+        </div>
+
+        <!-- BOX 2 -->
+        <div class="happy rose day ">
+            <img src="Screenshot 2026-02-11 000617.png">
+            <p>happy rose day</p>
+        </div>
+
+        <!-- BOX 3 -->
+        <div class="happy hug day">
+            <img src="Screenshot 2026-02-11 000701.png">
+            <p>happy hug day</p>
+        </div>
+
+        <!-- BOX 4 -->
+        <div class="happy kiss day">
+            <img src="Screenshot 2026-02-11 000744.png">
+            <p>happy kiss day</p>
+        </div>
+
+        <!-- BOX 5 -->
+        <div class="Oh!! happy promise day ">
+            <img src="Screenshot 2026-02-11 000921.png">
+            <p>Oh!! happy promise day </p>
+        </div>
+
+        <!-- BOX 6 -->
+        <div class="Happy teddy day my teddy bear ">
+            <img src="Screenshot 2026-02-11 000942.png">
+            <p>Happy teddy day my teddy bear</p>
+        </div>
+
+        <!-- BOX 7 -->
+        <div class=" Happy proposal day my love ">
+            <img src="Screenshot 2026-02-11 000829.png">
+            <p>Happy proposal day my love</p>
+        </div>
+
+    </div>
+
+    <!-- CUSTOMIZABLE BUTTON -->
+    <button class="next-final-btn" onclick="go(6)">
+        Enter 💖
+    </button>
+
+</div>
+
+<!-- PAGE 5 - UPDATED -->
+<div class="page" id="p6">
+    <div class="final-container">
+        <h1 id="valText">Happy Valentine's Day 💖</h1>
+        <p class="sub-text">You make my world brighter every single day 🌸</p>
+    </div>
+</div>
+
+<script>
+const no=document.getElementById("no");
+no.onmouseover=()=>{
+    no.style.left=Math.random()*200-100+"px";
+    no.style.top=Math.random()*200-100+"px";
+}
+function startMusic(){
+    const music = document.getElementById("bgMusic");
+    music.play();
+    go(2);
+}
+
+function go(n){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('show'));
+    document.getElementById('p'+n).classList.add('show');
+}
+
+function openEnv(){
+    document.getElementById('paper').style.display="block";
+}
+
+function blast(){
+    const b=document.createElement('div');
+    b.className="blast";
+    document.body.appendChild(b);
+    setTimeout(()=>{
+        b.remove();
+        go(3);
+    },1000);
+}
+</script>
+
+</body>
+</html> 
